@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, Container, Grid, Paper, Button } from '@mui/material';
+import { Typography, Box, Container, Grid, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material'; // Asegúrate de importar solo lo necesario
 import { styled } from '@mui/system';
 import SideBar from './SideBar';
 
@@ -63,3 +63,4 @@ function Home() {
 }
 
 export default Home;
+
