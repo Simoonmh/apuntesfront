@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, Container, Grid, Paper, Button } from '@mui/material';
+import { Typography, Box, Container, Grid, Paper } from '@mui/material'; // Eliminar importaciones no utilizadas
 import { styled } from '@mui/system';
 import SideBar from './SideBar';
 
