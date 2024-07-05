@@ -26,6 +26,17 @@ const GridItem = styled(Paper)(({ theme }) => ({
   backgroundColor: '#E3F2FD',  // Color celeste claro similar al sidebar
 }));
 
+const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  minWidth: 120,
+  height: '30px', // Ajustar la altura
+  '& .MuiInputBase-root': {
+    height: '40px', // Ajustar la altura del input
+  },
+  '& .MuiInputLabel-root': {
+    lineHeight: '18px', // Ajustar la altura del label
+  }
+}));
+
 function BuscadorArchivos() {
   const [searchTerm, setSearchTerm] = useState('');
   const [files, setFiles] = useState([]);
@@ -74,8 +85,8 @@ function BuscadorArchivos() {
           />
           <SearchIcon />
         </SearchBox>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
-          <FormControl sx={{ minWidth: 120 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4, alignItems: 'center' }}>
+        <StyledFormControl sx={{ width: '30%', mr: 2 }}>
             <InputLabel>Tipo de Archivo</InputLabel>
             <Select
               value={fileTypeFilter}
@@ -87,8 +98,8 @@ function BuscadorArchivos() {
               <MenuItem value="jpg">JPG</MenuItem>
               <MenuItem value="ps">PS</MenuItem>
             </Select>
-          </FormControl>
-          <FormControl sx={{ minWidth: 120 }}>
+          </StyledFormControl>
+          <StyledFormControl sx={{ width: '30%', mr: 2 }}>
             <InputLabel>Ramo</InputLabel>
             <Select
               value={courseFilter}
@@ -99,8 +110,8 @@ function BuscadorArchivos() {
               <MenuItem value="Taller de Diseño Industrial III">Taller de Diseño Industrial III</MenuItem>
               <MenuItem value="Taller Factoría">Taller Factoría</MenuItem>
             </Select>
-          </FormControl>
-          <FormControl sx={{ minWidth: 120 }}>
+          </StyledFormControl>
+          <StyledFormControl sx={{ width: '30%', mr: 2 }}>
             <InputLabel>Orden</InputLabel>
             <Select
               value={sortOrder}
@@ -110,7 +121,7 @@ function BuscadorArchivos() {
               <MenuItem value="asc">Ascendente</MenuItem>
               <MenuItem value="desc">Descendente</MenuItem>
             </Select>
-          </FormControl>
+          </StyledFormControl>
         </Box>
         <Grid container spacing={4}>
           {filteredFiles.map((file) => (

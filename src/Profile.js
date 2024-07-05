@@ -49,13 +49,13 @@ function Profile() {
       <SideBar />
       <StyledContainer maxWidth="lg">
         <Typography variant="h4" component="h1" gutterBottom align="center">
-          Perfil
+         Mi Perfil
         </Typography>
         <Typography variant="h6" component="h2" gutterBottom align="center">
           {`${firstName} ${lastName}`}
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          Archivos Subidos
+          Archivos Compartidos
         </Typography>
         <Grid container spacing={4}>
           {files.map((file) => (
