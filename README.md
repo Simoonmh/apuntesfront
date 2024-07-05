@@ -9,7 +9,7 @@ Este proyecto es una aplicación de apuntes en línea con un backend basado en F
 1. Clona el repositorio del frontend:
 
     ```bash
-    git clone https://github.com/tu-usuario/apuntes-frontend.git
+    git clone https://github.com/AngelesNav/apuntes-frontend.git
     cd apuntes-frontend
     ```
 
