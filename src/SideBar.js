@@ -51,7 +51,7 @@ const SideBar = () => (
   <Sidebar>
     <SidebarItemContainer>
       <SidebarItem>
-        <IconButton component={Link} to="/home">
+        <IconButton component={Link} to="/">
           <HomeIcon />
         </IconButton>
         <SidebarText component={Link} to="/">Inicio</SidebarText>
@@ -76,10 +76,10 @@ const SideBar = () => (
       </SidebarItem>
     </SidebarItemContainer>
     <SidebarItem>
-      <IconButton component={Link} to="/">
+      <IconButton component={Link} to="/login">
         <ExitToAppIcon />
       </IconButton>
-      <SidebarText component={Link} to="/">Salir</SidebarText>
+      <SidebarText component={Link} to="/login">Salir</SidebarText>
     </SidebarItem>
   </Sidebar>
 );
