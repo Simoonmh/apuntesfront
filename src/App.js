@@ -1,46 +1,39 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { CssBaseline, Box } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme';
-import Login from './Login';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './Home';
-import Upload from './Upload';
+import Login from './Login';
 import Profile from './Profile';
-import BuscadorArchivos from './BuscadorArchivos';
+import Upload from './Upload';
 import ViewFile from './ViewFile';
 import SideBar from './SideBar';
+import BuscadorArchivos from './BuscadorArchivos';
+
+const drawerWidth = 110; // Definimos el ancho del SideBar
 
 function App() {
+  const location = useLocation();
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Box sx={{ display: 'flex' }}>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route
-              path="*"
-              element={
-                <>
-                  <SideBar />
-                  <Box component="main" sx={{ flexGrow: 1, p: 3, marginLeft: '95px' }}>
-                    <Routes>
-                      <Route path="/home" element={<Home />} />
-                      <Route path="/upload" element={<Upload />} />
-                      <Route path="/profile" element={<Profile />} />
-                      <Route path="/buscador_archivos" element={<BuscadorArchivos />} />
-                      <Route path="/view/:id" element={<ViewFile />} />
-                    </Routes>
-                  </Box>
-                </>
-              }
-            />
-          </Routes>
-        </Box>
-      </Router>
-    </ThemeProvider>
+    <div style={{ display: 'flex' }}>
+      {location.pathname !== '/login' && <SideBar />}
+      <div style={{ 
+          flexGrow: 1, 
+          marginLeft: location.pathname !== '/login' ? `${drawerWidth}px` : 0, 
+          padding: '20px',
+          width: `calc(80% - ${drawerWidth}px)`  // Ajustamos el tamaño del contenido principal
+        }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/view/:id" element={<ViewFile />} />
+          <Route path="/buscador_archivos" element={<BuscadorArchivos />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
 export default App;
+

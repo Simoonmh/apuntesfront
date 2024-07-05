@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography, Container, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
-
 const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -49,7 +48,7 @@ function Login() {
         localStorage.setItem('userId', data.id);
         localStorage.setItem('firstName', data.first_name);
         localStorage.setItem('lastName', data.last_name);
-        navigate('/home');
+        navigate('/');
       } else {
         throw new Error(data.error);
       }
