@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, Typography, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
@@ -47,41 +47,50 @@ const SidebarText = styled(Typography)({
   textAlign: 'center',
 });
 
-const SideBar = () => (
-  <Sidebar>
-    <SidebarItemContainer>
-      <SidebarItem>
-        <IconButton component={Link} to="/">
-          <HomeIcon />
+const SideBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
+
+  return (
+    <Sidebar>
+      <SidebarItemContainer>
+        <SidebarItem>
+          <IconButton component={Link} to="/">
+            <HomeIcon />
+          </IconButton>
+          <SidebarText component={Link} to="/">Inicio</SidebarText>
+        </SidebarItem>
+        <SidebarItem>
+          <IconButton component={Link} to="/profile">
+            <PersonIcon />
+          </IconButton>
+          <SidebarText component={Link} to="/profile">Perfil</SidebarText>
+        </SidebarItem>
+        <SidebarItem>
+          <IconButton component={Link} to="/buscador_archivos">
+            <SearchIcon />
+          </IconButton>
+          <SidebarText component={Link} to="/buscador_archivos">Buscador</SidebarText>
+        </SidebarItem>
+        <SidebarItem>
+          <IconButton component={Link} to="/upload">
+            <UploadIcon />
+          </IconButton>
+          <SidebarText component={Link} to="/upload">Subir</SidebarText>
+        </SidebarItem>
+      </SidebarItemContainer>
+      <SidebarItem onClick={handleLogout}>
+        <IconButton>
+          <ExitToAppIcon />
         </IconButton>
-        <SidebarText component={Link} to="/">Inicio</SidebarText>
+        <SidebarText>Salir</SidebarText>
       </SidebarItem>
-      <SidebarItem>
-        <IconButton component={Link} to="/profile">
-          <PersonIcon />
-        </IconButton>
-        <SidebarText component={Link} to="/profile">Perfil</SidebarText>
-      </SidebarItem>
-      <SidebarItem>
-        <IconButton component={Link} to="/buscador_archivos">
-          <SearchIcon />
-        </IconButton>
-        <SidebarText component={Link} to="/buscador_archivos">Buscador</SidebarText>
-      </SidebarItem>
-      <SidebarItem>
-        <IconButton component={Link} to="/upload">
-          <UploadIcon />
-        </IconButton>
-        <SidebarText component={Link} to="/upload">Subir</SidebarText>
-      </SidebarItem>
-    </SidebarItemContainer>
-    <SidebarItem>
-      <IconButton component={Link} to="/login">
-        <ExitToAppIcon />
-      </IconButton>
-      <SidebarText component={Link} to="/login">Salir</SidebarText>
-    </SidebarItem>
-  </Sidebar>
-);
+    </Sidebar>
+  );
+};
 
 export default SideBar;

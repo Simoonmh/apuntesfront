@@ -46,7 +46,7 @@ function Home() {
           {`Hola, ${firstName} ${lastName}`}
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          Explora categorías
+          Nuestros ramos disponibles
         </Typography>
         <Grid container spacing={4}>
           {courses.map((course, index) => (

@@ -29,7 +29,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-function Login() {
+function Register() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -38,19 +40,17 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/users/login', {
+      const response = await fetch('http://localhost:5000/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ firstName, lastName, email, password })
       });
 
       const data = await response.json();
       if (response.ok) {
-        console.log('User authenticated:', data);
-        localStorage.setItem('userId', data.id);
-        localStorage.setItem('firstName', data.first_name);
-        localStorage.setItem('lastName', data.last_name);
-        navigate('/');
+        console.log('User registered:', data);
+        setMessage('Registro exitoso');
+        navigate('/login');
       } else {
         throw new Error(data.error);
       }
@@ -64,11 +64,25 @@ function Login() {
     <StyledContainer maxWidth="sm">
       <StyledPaper elevation={3}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Ingresa a Apuntes de diseño UDP
+          Regístrate en Apuntes UDP
         </Typography>
         <StyledForm onSubmit={handleSubmit}>
           <TextField
-            label="Correo"
+            label="Nombre"
+            fullWidth
+            variant="outlined"
+            value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+          />
+          <TextField
+            label="Apellido"
+            fullWidth
+            variant="outlined"
+            value={lastName}
+            onChange={e => setLastName(e.target.value)}
+          />
+          <TextField
+            label="Email"
             fullWidth
             variant="outlined"
             value={email}
@@ -83,12 +97,9 @@ function Login() {
             onChange={e => setPassword(e.target.value)}
           />
           <StyledButton type="submit" variant="contained" color="primary">
-            Login
+            Registrar
           </StyledButton>
         </StyledForm>
-        <Typography variant="body2" mt={2}>
-          Aun no tienes cuenta? <a href="/register">Registrarse</a>
-        </Typography>
         {message && (
           <Typography color="error" variant="body2" mt={2}>
             {message}
@@ -99,4 +110,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
